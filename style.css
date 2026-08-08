@@ -1,0 +1,327 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   CORES
+========================= */
+
+:root {
+  --navy: #071A35;
+  --navy-light: #0B2345;
+  --white: #FFFFFF;
+  --text-soft: #AAB5C5;
+  --border: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================
+   BASE
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(20, 61, 105, 0.55),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #061426 0%,
+      #030A13 100%
+    );
+
+  color: var(--white);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  width: min(1120px, 100%);
+
+  min-height: 100vh;
+
+  padding: 48px 28px 55px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* =========================
+   EYEBROW
+========================= */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 14px;
+
+  margin-bottom: 23px;
+
+  border: 1px solid rgba(125, 169, 220, 0.25);
+
+  border-radius: 999px;
+
+  background: rgba(13, 40, 73, 0.65);
+
+  color: #AFC6E3;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   HEADLINE
+========================= */
+
+h1 {
+  max-width: 1000px;
+
+  text-align: center;
+
+  font-size: clamp(38px, 5vw, 66px);
+
+  line-height: 1.03;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 800;
+}
+
+h1 span {
+  display: block;
+
+  color: #8FAFD2;
+}
+
+
+/* =========================
+   SUBTÍTULO
+========================= */
+
+.subtitle {
+  max-width: 760px;
+
+  margin-top: 21px;
+
+  text-align: center;
+
+  color: var(--text-soft);
+
+  font-size: clamp(16px, 2vw, 19px);
+
+  line-height: 1.55;
+
+  font-weight: 400;
+}
+
+.subtitle strong {
+  color: var(--white);
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   VÍDEO
+========================= */
+
+.video-wrapper {
+  width: 100%;
+
+  margin-top: 38px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  aspect-ratio: 16 / 9;
+
+  background: #000;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(130, 169, 211, 0.22);
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.55),
+    0 0 70px rgba(8, 39, 72, 0.35);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* =========================
+   LEGENDA DO VÍDEO
+========================= */
+
+.video-caption {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+.play-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #6E98C7;
+
+  box-shadow:
+    0 0 10px rgba(110, 152, 199, 0.6);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding:
+      38px 18px
+      40px;
+  }
+
+  .eyebrow {
+    margin-bottom: 19px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.11em;
+  }
+
+  h1 {
+    font-size: clamp(34px, 8vw, 48px);
+  }
+
+  .subtitle {
+    margin-top: 17px;
+
+    font-size: 16px;
+  }
+
+  .video-wrapper {
+    margin-top: 30px;
+
+    border-radius: 10px;
+  }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 480px) {
+
+  .hero {
+    padding:
+      28px 14px
+      32px;
+  }
+
+  .eyebrow {
+    padding: 7px 10px;
+
+    margin-bottom: 17px;
+
+    font-size: 8px;
+  }
+
+  h1 {
+    font-size: 33px;
+
+    line-height: 1.05;
+  }
+
+  .subtitle {
+    font-size: 15px;
+
+    line-height: 1.5;
+  }
+
+  .video-wrapper {
+    margin-top: 26px;
+
+    border-radius: 8px;
+  }
+
+  .video-caption {
+    font-size: 10px;
+  }
+}
