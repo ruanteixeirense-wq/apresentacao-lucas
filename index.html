@@ -46,25 +46,152 @@
         <div class="video-glow"></div>
 
         <div class="video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/6e9XW3InH1k?rel=0&modestbranding=1"
-            title="Apresentação personalizada para Lucas Félix"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+
+          <div id="player"></div>
+
         </div>
 
       </div>
 
-      <div class="watch-note">
+      <div class="watch-note" id="watchNote">
         <span class="watch-icon">▶</span>
         <span>10 minutos · Assista até o final</span>
+      </div>
+
+
+      <!-- CTA ESCONDIDA ATÉ 10 MINUTOS -->
+
+      <div class="cta-container" id="ctaContainer">
+
+        <p class="cta-message">
+          Se fizer sentido para você, vamos conversar.
+        </p>
+
+        <a
+          class="cta-button"
+          href="https://wa.me/5561992188711?text=Ruan%2C%20assisti%20%C3%A0%20apresenta%C3%A7%C3%A3o%20e%20quero%20falar%20sobre%20o%20projeto."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Quero falar sobre o projeto
+          <span>→</span>
+        </a>
+
       </div>
 
     </section>
 
   </main>
+
+
+  <!-- YOUTUBE IFRAME API -->
+
+  <script>
+    let player;
+    let ctaShown = false;
+
+    function onYouTubeIframeAPIReady() {
+
+      player = new YT.Player('player', {
+
+        videoId: '6e9XW3InH1k',
+
+        playerVars: {
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1
+        },
+
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+
+      });
+
+    }
+
+
+    function onPlayerStateChange(event) {
+
+      if (event.data === YT.PlayerState.PLAYING) {
+
+        checkVideoTime();
+
+      }
+
+    }
+
+
+    function checkVideoTime() {
+
+      if (!player || !player.getCurrentTime) {
+        return;
+      }
+
+      const currentTime = player.getCurrentTime();
+
+      if (currentTime >= 600 && !ctaShown) {
+
+        showCTA();
+
+      }
+
+      if (currentTime < 600 && ctaShown) {
+
+        hideCTA();
+
+      }
+
+      if (!ctaShown) {
+
+        setTimeout(checkVideoTime, 1000);
+
+      }
+
+    }
+
+
+    function showCTA() {
+
+      ctaShown = true;
+
+      const cta = document.getElementById('ctaContainer');
+      const note = document.getElementById('watchNote');
+
+      cta.classList.add('visible');
+
+      note.classList.add('hidden');
+
+    }
+
+
+    function hideCTA() {
+
+      ctaShown = false;
+
+      const cta = document.getElementById('ctaContainer');
+      const note = document.getElementById('watchNote');
+
+      cta.classList.remove('visible');
+
+      note.classList.remove('hidden');
+
+      checkVideoTime();
+
+    }
+
+
+    // Carrega a API oficial do YouTube
+
+    const tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  </script>
 
 </body>
 </html>
